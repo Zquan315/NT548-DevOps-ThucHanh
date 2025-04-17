@@ -1,8 +1,3 @@
-provider "aws" {
-    region = var.region_value
-    profile = var.profile_value
-}
-
 resource "aws_vpc" "nhom16_vpc" {
 
     cidr_block = var.cidr_block_value
@@ -16,8 +11,8 @@ resource "aws_vpc" "nhom16_vpc" {
 resource "aws_subnet" "nhom16_subnet_private" {
     count = var.subnet_count_value
     vpc_id = aws_vpc.nhom16_vpc.id
-    cidr_block = var.cidr_block_pri_value 
-    map_public_ip_on_launch = var.map_public_ip_on_launch_value
+    cidr_block = var.cidr_block_private_value 
+    map_public_ip_on_launch = var.map_public_ip_on_launch_private_value
     tags = {
         Name = "nhom16-subnet-private"
     }
@@ -26,8 +21,8 @@ resource "aws_subnet" "nhom16_subnet_private" {
 resource "aws_subnet" "nhom16_subnet_public" {
     count = var.subnet_count_value
     vpc_id = aws_vpc.nhom16_vpc.id
-    cidr_block = var.cidr_block_pub_value 
-    map_public_ip_on_launch = var.map_public_ip_on_launch_value
+    cidr_block = var.cidr_block_public_value 
+    map_public_ip_on_launch = var.map_public_ip_on_launch_public_value
     tags = {
         Name = "nhom16-subnet-private"
     }
