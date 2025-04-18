@@ -1,5 +1,5 @@
 module "vpc_module" {
-    source = "./modules/vpc_module"
+    source = "../modules/vpc_module"
     #VPC
     cidr_block_value          = "172.31.0.0/16"
     dns_hostnames_value      = true
