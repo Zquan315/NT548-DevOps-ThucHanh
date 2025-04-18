@@ -1,0 +1,22 @@
+# Bỏ qua thư mục chứa plugin và dữ liệu Terraform
+.terraform/
+
+# Bỏ qua file trạng thái Terraform và backup
+*.tfstate
+*.tfstate.backup
+
+# Bỏ qua file logs hoặc crash (nếu có)
+crash.log
+
+# Bỏ qua file tạm thời của hệ điều hành hoặc editor
+*.swp
+*.bak
+*.tmp
+*.log
+
+# Bỏ qua file khóa khi chạy terraform
+.terraform.lock.hcl
+
+# Chỉ theo dõi file .tf và .tfvars
+!*.tf
+!*.tfvars
