@@ -24,4 +24,14 @@ variable "vpc_cidr_block_public_value" {
     type        = string
 }
 
+#route table
 
+variable "destination_cidr_block_private_value" {
+    description = "The destination CIDR block for the private route."
+    type        = string
+}
+
+variable "destination_cidr_block_public_value" {
+    description = "The destination CIDR block for the public route."
+    type        = string
+}

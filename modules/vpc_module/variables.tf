@@ -16,11 +16,11 @@ variable "dns_support_value" {
     default     = true
 }
 
-variable "subnet_count_value" {
-    description = "The number of subnets to create."
-    type        = number
-    default = 1
-}
+# variable "subnet_count_value" {
+#     description = "The number of subnets to create."
+#     type        = number
+#     default = 1
+# }
 
 variable "cidr_block_private_value" {
     description = "The CIDR block for the subnets."
