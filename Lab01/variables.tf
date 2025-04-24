@@ -46,3 +46,9 @@ variable "private_ingress_ports" {
   type        = list(number)
   default     = [22]
 }
+
+variable "ssh_port" {
+  description = "The port for SSH access."
+  type        = number
+  default     = 22
+}

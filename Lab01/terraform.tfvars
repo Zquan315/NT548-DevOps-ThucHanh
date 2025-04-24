@@ -13,3 +13,4 @@ destination_cidr_block_public_value  = "0.0.0.0/0"
 #security group
 allowed_ssh_cidr      = "171.224.240.4/32" #ip này tự check, check command line: curl https://checkip.amazonaws.com
 private_ingress_ports = [22]
+ssh_port = 22
