@@ -43,8 +43,8 @@ module "public_security_group_module" {
     # Ingress Rules
     ingress_rules = [
         {
-        from_port             = 22
-        to_port               = 22
+        from_port             = var.ssh_port
+        to_port               = var.ssh_port
         protocol              = "tcp"
         cidr_blocks           = [var.allowed_ssh_cidr]
         source_security_group = []
