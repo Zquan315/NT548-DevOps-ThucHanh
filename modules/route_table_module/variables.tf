@@ -22,14 +22,15 @@ variable "destination_cidr_block_public" {
   description = "The destination CIDR block for the public route"
   type        = string
 }
+
 variable "gateway_id_private" {
   description = "The ID of the gateway for the private route"
-  type        = string 
+  type        = string
 }
 
 variable "gateway_id_public" {
   description = "The ID of the gateway for the public route"
-  type        = string 
+  type        = string
 }
 
 variable "subnet_id_private" {
