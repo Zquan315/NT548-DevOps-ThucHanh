@@ -52,3 +52,13 @@ variable "ssh_port" {
   type        = number
   default     = 22
 }
+
+variable "ami_id" {
+  type        = string
+  description = "AMI ID cho EC2 instance (Amazon Linux 2, Ubuntu v.v)"
+}
+
+variable "key_name" {
+  type        = string
+  description = "The name of the SSH key used to log in to EC2 instances."
+}
