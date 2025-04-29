@@ -62,3 +62,18 @@ variable "key_name" {
   type        = string
   description = "The name of the SSH key used to log in to EC2 instances."
 }
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "associate_public_ip_map" {
+  type = map(bool)
+  default = {
+    public  = true
+    private = false
+  }
+}
+

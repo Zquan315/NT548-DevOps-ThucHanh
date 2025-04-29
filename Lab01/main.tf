@@ -73,10 +73,10 @@ module "private_security_group_module" {
 module "ec2_public_instance" {
   source              = "../modules/ec2_instance"
   ami_id              = var.ami_id
-  instance_type       = "t2.micro"
+  instance_type       = var.instance_type
   subnet_id           = module.vpc_module.nhom16_subnet_public_id
   security_group_id   = module.public_security_group_module.security_group_id
-  associate_public_ip = true
+  associate_public_ip = var.associate_public_ip_map["public"]
   key_name            = var.key_name
   instance_name       = "nhom16-public-instance"
 }
@@ -84,10 +84,11 @@ module "ec2_public_instance" {
 module "ec2_private_instance" {
   source              = "../modules/ec2_instance"
   ami_id              = var.ami_id
-  instance_type       = "t2.micro"
+  instance_type       = var.instance_type
   subnet_id           = module.vpc_module.nhom16_subnet_private_id
   security_group_id   = module.private_security_group_module.security_group_id
-  associate_public_ip = false
+  associate_public_ip = var.associate_public_ip_map["private"]
   key_name            = var.key_name
   instance_name       = "nhom16-private-instance"
 }
+
