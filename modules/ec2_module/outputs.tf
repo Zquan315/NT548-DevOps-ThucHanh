@@ -1,6 +1,7 @@
-output "instance_id" {
-  value = aws_instance.nhom16_ec2.id
+output "nhom16_ec2_private_id" {
+  value = aws_instance.nhom16_ec2_private.id
 }
-output "public_ip" {
-  value = aws_instance.nhom16_ec2.public_ip
+
+output "nhom16_ec2_public_id" {
+  value = aws_instance.nhom16_ec2_public.id
 }

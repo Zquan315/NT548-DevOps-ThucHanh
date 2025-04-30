@@ -8,19 +8,14 @@ variable "instance_type" {
   description = "EC2 instance type"
 }
 
-variable "subnet_id" {
+variable "subnet_id_private" {
   type        = string
-  description = "The subnet in which to launch the EC2 instance"
+  description = "The private subnet in which to launch the EC2 instance"
 }
 
-variable "security_group_id" {
-  type        = string
+variable "security_group_id_private" {
+  type        = list(string)
   description = "The security group ID associated with the EC2 instance"
-}
-
-variable "associate_public_ip" {
-  type        = bool
-  description = "Whether to associate a public IP address"
 }
 
 variable "key_name" {
@@ -28,7 +23,12 @@ variable "key_name" {
   description = "The name of the SSH key pair used to connect"
 }
 
-variable "instance_name" {
+variable "subnet_id_public" {
   type        = string
-  description = "Name to assign to the EC2 instance"
+  description = "The public subnet in which to launch the EC2 instance"
+}
+
+variable "security_group_id_public" {
+  type        = list(string)
+  description = "The security group ID associated with the EC2 instance"
 }

@@ -36,44 +36,57 @@ variable "destination_cidr_block_public_value" {
   type        = string
 }
 
-variable "allowed_ssh_cidr" {
-  description = "The CIDR block for allowed SSH access."
+
+# variables for security group
+variable "from_port_in_private_value" {
+  description = "The starting port for ingress rules in the private security group."
+  type        = number
+}
+
+variable "to_port_in_private_value" {
+  description = "The ending port for ingress rules in the private security group."
+  type        = number
+}
+
+variable "protocol_in_private_value" {
+  description = "The protocol for ingress rules in the private security group."
   type        = string
 }
 
-variable "private_ingress_ports" {
-  description = "Port list for public EC2 can access to private EC2"
-  type        = list(number)
-  default     = [22]
-}
 
-variable "ssh_port" {
-  description = "The port for SSH access."
+variable "from_port_in_public_value" {
+  description = "The starting port for ingress rules in the public security group."
   type        = number
-  default     = 22
 }
 
-variable "ami_id" {
+variable "to_port_in_public_value" {
+  description = "The ending port for ingress rules in the public security group."
+  type        = number
+}
+
+variable "protocol_in_public_value" {
+  description = "The protocol for ingress rules in the public security group."
+  type        = string
+}
+
+variable "cidr_blocks_in_public_value" {
+  description = "The CIDR blocks for ingress rules in the public security group."
+  type        = list(string)
+}
+
+# variables for ec2 instance
+variable "ami_id_value" {
   type        = string
   description = "AMI ID cho EC2 instance (Amazon Linux 2, Ubuntu v.v)"
 }
 
-variable "key_name" {
+variable "key_name_value" {
   type        = string
   description = "The name of the SSH key used to log in to EC2 instances."
 }
 
-variable "instance_type" {
+variable "instance_type_value" {
   description = "EC2 instance type"
   type        = string
-  default     = "t2.micro"
-}
-
-variable "associate_public_ip_map" {
-  type = map(bool)
-  default = {
-    public  = true
-    private = false
-  }
 }
 

@@ -1,43 +1,93 @@
-variable "vpc_id_value" {
+variable "vpc_id" {
   description = "The VPC ID to associate the security group with"
   type        = string
 }
 
-variable "security_group_name" {
-  description = "The name of the security group"
+variable "from_port_in_private" {
+  description = "The starting port for the ingress rule"
+  type        = number
+}
+
+variable "to_port_in_private" {
+  description = "The ending port for the ingress rule"
+  type        = number
+}
+
+variable "protocol_in_private" {
+  description = "The protocol for the ingress rule"
   type        = string
 }
 
-variable "description" {
-  description = "The description of the security group"
+variable "public_security_group_id" {
+  description = "The security group ID for the public security group"
   type        = string
-  default     = "Security group for the VPC"
 }
 
-variable "ingress_rules" {
-  description = "Ingress rule"
-  type = list(object({
-    from_port             = number
-    to_port               = number
-    protocol              = string
-    cidr_blocks           = optional(list(string), [])
-    source_security_group = optional(list(string), [])
-  }))
-  default = []
+variable "from_port_e_private" {
+  description = "The starting port for the egress rule"
+  type        = number
+  default = 0
 }
 
-variable "egress_rules" {
-  description = "Egress rules"
-  type = list(object({
-    from_port   = number
-    to_port     = number
-    protocol    = string
-    cidr_blocks = list(string)
-  }))
-  default = [{
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }]
+variable "to_port_e_private" {
+  description = "The ending port for the egress rule"
+  type        = number
+  default = 0
+}
+
+variable "protocol_e_private" {
+  description = "The protocol for the egress rule"
+  type        = string
+  default = "-1"
+}
+
+variable "cidr_blocks_e_private" {
+  description = "The CIDR blocks for the egress rule"
+  type        = list(string)
+  default = ["0.0.0.0/0"]
+}
+
+#public security group
+variable "from_port_in_public" {
+  description = "The starting port for the ingress rule"
+  type        = number
+}
+
+variable "to_port_in_public" {
+  description = "The ending port for the ingress rule"
+  type        = number
+}
+
+variable "protocol_in_public" {
+  description = "The protocol for the ingress rule"
+  type        = string
+}
+
+variable "cidr_blocks_in_public" {
+  description = "The CIDR blocks for the ingress rule"
+  type        = list(string)
+}
+
+variable "from_port_e_public" {
+  description = "The starting port for the egress rule"
+  type        = number
+  default = 0
+}
+
+variable "to_port_e_public" {
+  description = "The ending port for the egress rule"
+  type        = number
+  default = 0
+}
+
+variable "protocol_e_public" {
+  description = "The protocol for the egress rule"
+  type        = string
+  default = "-1"
+}
+
+variable "cidr_blocks_e_public" {
+  description = "The CIDR blocks for the egress rule"
+  type        = list(string)
+  default = ["0.0.0.0/0"]
 }

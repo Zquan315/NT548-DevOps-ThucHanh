@@ -1,3 +1,4 @@
+# create VPC and subnets
 module "vpc_module" {
   source = "../modules/vpc_module"
   #VPC
@@ -6,6 +7,7 @@ module "vpc_module" {
   cidr_block_public_value  = var.vpc_cidr_block_public_value
 }
 
+# Create Nat Gateway
 module "nat_gateway_module" {
   source = "../modules/nat_gateway_module"
   # Allocate an Elastic IP
@@ -15,6 +17,7 @@ module "nat_gateway_module" {
   region_network_border_group = var.region_value
 }
 
+# create route table
 module "route_table_module" {
   source = "../modules/route_table_module"
 
@@ -34,61 +37,40 @@ module "route_table_module" {
   subnet_id_public              = module.vpc_module.nhom16_subnet_public_id
 }
 
-module "public_security_group_module" {
-    source              = "../modules/security_group_module"
-    security_group_name = "nhom16_public_security_group"
-    description = "Allow SSH access from specific IP"
-    vpc_id_value        = module.vpc_module.nhom16_vpc_id
+# Create Security Groups
+module "security_group_module" {
+  source = "../modules/security_group_module"
+  vpc_id = module.vpc_module.nhom16_vpc_id
+  # Security Group Private ingress
 
-    # Ingress Rules
-    ingress_rules = [
-        {
-        from_port             = var.ssh_port
-        to_port               = var.ssh_port
-        protocol              = "tcp"
-        cidr_blocks           = [var.allowed_ssh_cidr]
-        source_security_group = []
-        }
-    ]
+  from_port_in_private = var.from_port_in_private_value
+  to_port_in_private   = var.to_port_in_private_value
+  protocol_in_private  = var.protocol_in_private_value
+  public_security_group_id =  module.security_group_module.nhom16_security_group_public_id
+
+  # Security Group Public ingress
+  from_port_in_public   = var.from_port_in_public_value
+  to_port_in_public     = var.to_port_in_public_value
+  protocol_in_public    = var.protocol_in_public_value
+  cidr_blocks_in_public = var.cidr_blocks_in_public_value
+
 }
 
-module "private_security_group_module" {
-    source              = "../modules/security_group_module"
-    security_group_name = "nhom16_private_security_group"
-    description = "Allow SSH access from public security group"
-    vpc_id_value        = module.vpc_module.nhom16_vpc_id
+# Create EC2 instances
+module "ec2_instance_module" {
+  source              = "../modules/ec2_module"
+  ami_id              = var.ami_id_value
+  instance_type       = var.instance_type_value
+  key_name            = var.key_name_value
 
-    # Ingress Rules   
-    ingress_rules = [
-        for port in var.private_ingress_ports : {
-        from_port             = port
-        to_port               = port
-        protocol              = "tcp"
-        cidr_blocks           = []
-        source_security_group = [module.public_security_group_module.security_group_id]
-        }
-    ]
+  # EC2 Private Instance
+  subnet_id_private           = module.vpc_module.nhom16_subnet_private_id
+  security_group_id_private   = [module.security_group_module.nhom16_security_group_private_id]
+
+  # EC2 Public Instance
+  subnet_id_public            = module.vpc_module.nhom16_subnet_public_id
+  security_group_id_public    = [module.security_group_module.nhom16_security_group_public_id]
+  
 }
 
-module "ec2_public_instance" {
-  source              = "../modules/ec2_instance"
-  ami_id              = var.ami_id
-  instance_type       = var.instance_type
-  subnet_id           = module.vpc_module.nhom16_subnet_public_id
-  security_group_id   = module.public_security_group_module.security_group_id
-  associate_public_ip = var.associate_public_ip_map["public"]
-  key_name            = var.key_name
-  instance_name       = "nhom16-public-instance"
-}
-
-module "ec2_private_instance" {
-  source              = "../modules/ec2_instance"
-  ami_id              = var.ami_id
-  instance_type       = var.instance_type
-  subnet_id           = module.vpc_module.nhom16_subnet_private_id
-  security_group_id   = module.private_security_group_module.security_group_id
-  associate_public_ip = var.associate_public_ip_map["private"]
-  key_name            = var.key_name
-  instance_name       = "nhom16-private-instance"
-}
 

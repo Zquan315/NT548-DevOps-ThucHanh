@@ -34,11 +34,3 @@ resource "aws_internet_gateway" "nhom16_igw" {
         Name = "nhom16-igw"
     }
 }
-
-resource "aws_security_group" "nhom16_sg" {
-    vpc_id = aws_vpc.nhom16_vpc.id
-    name = "nhom16-sg"
-    tags = {
-        Name = "nhom16-sg"
-    }
-}

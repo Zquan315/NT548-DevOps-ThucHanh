@@ -1,27 +1,39 @@
-resource "aws_security_group" "nhom16_security_group" {
-  vpc_id      = var.vpc_id_value
-  name        = var.security_group_name
-  description = var.description
+resource "aws_security_group" "nhom16_security_group_private" {
+  vpc_id      = var.vpc_id
   tags = {
-    Name = "nhom16_security_group"
+    Name = "nhom16_security_group_private"
   }
+  ingress {
+      from_port       = var.from_port_in_private
+      to_port         = var.to_port_in_private
+      protocol        = var.protocol_in_private
+      security_groups = [var.public_security_group_id]
 
-  dynamic "ingress" {
-    for_each = var.ingress_rules
-    content {
-      from_port       = ingress.value.from_port
-      to_port         = ingress.value.to_port
-      protocol        = ingress.value.protocol
-      cidr_blocks     = ingress.value.cidr_blocks
-      security_groups = ingress.value.source_security_group
-    }
   }
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = var.from_port_e_private
+    to_port     = var.to_port_e_private
+    protocol    = var.protocol_e_private
+    cidr_blocks = var.cidr_blocks_e_private
   }
 }
 
+resource "aws_security_group" "nhom16_security_group_public" {
+  vpc_id      = var.vpc_id
+  tags = {
+    Name = "nhom16_security_group_public"
+  }
+  ingress {
+      from_port       = var.from_port_in_public
+      to_port         = var.to_port_in_public
+      protocol        = var.protocol_in_public
+      cidr_blocks     = var.cidr_blocks_in_public
 
+  }
+  egress {
+    from_port   = var.from_port_e_public
+    to_port     = var.to_port_e_public
+    protocol    = var.protocol_e_public
+    cidr_blocks = var.cidr_blocks_e_public
+  }
+}
