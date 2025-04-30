@@ -32,3 +32,4 @@
   ```bash
   terraform destroy
   ```
+> Trong file `provider.tf` nếu như sài tài khoản root thì giá trị `profile_value = ""`, còn nếu sử dụng bằng user nào thì giá trị tương ứng nằm trong file `"C:\Users\<User>\.aws\credentials"`
