@@ -19,7 +19,7 @@ protocol_in_private_value  = "tcp"
 from_port_in_public_value = 22
 to_port_in_public_value   = 22
 protocol_in_public_value  = "tcp"
-cidr_blocks_in_public_value = ["125.212.174.241/32"] # My IP address
+cidr_blocks_in_public_value = ["125.212.175.47/32"] # My IP address
 
 # EC2 instance
 ami_id_value = "ami-0e449927258d45bc4" # amazon linux 2023 ami
