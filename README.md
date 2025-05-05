@@ -1,5 +1,5 @@
 # NT548.P21 - Thực hành Công nghệ DevOps và ứng dụng
-## Hướng dẫn cách chạy mã nguồn
+## Hướng dẫn cách chạy mã nguồn với terraform
 > Bởi vì các trong các module không có file `.tfvars` vì thế khi chạy cần phải nhập giá trị từng biến nếu muốn chạy từng module. Tuy nhiên, ở bài lab này, nhóm đã tách folder `module` riêng với folder `Lab01` dể có thể phục vụ cho nhiều bài lab khác. Vì thế để chỉ cần 1 câu lệnh là có thể khởi tạo toàn bộ hệ thống gồm 5 module.
 - Cấu hình aws, để có thể kết nối tới aws
 
