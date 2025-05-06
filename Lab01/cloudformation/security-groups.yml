@@ -9,7 +9,7 @@ Parameters:
   MyIp:
     Type: String
     Description: Your public IP in CIDR notation 
-    Default: 113.161.91.13/32
+    Default: 118.68.140.83/32
 
 Resources:
   Nhom16PublicSG:

@@ -22,7 +22,7 @@ Resources:
       Parameters:
         VPCId: !GetAtt VPCStack.Outputs.VPCId
         # MyIp: 192.168.0.137/32  # your specific IP
-        MyIp: 113.161.91.13/32
+        MyIp: 118.68.140.83/32
 
   RouteTableStack:
     Type: AWS::CloudFormation::Stack
@@ -44,4 +44,4 @@ Resources:
         PrivateSubnetId: !GetAtt VPCStack.Outputs.PrivateSubnetId
         PublicSG: !GetAtt SGStack.Outputs.Nhom16PublicSecurityGroup
         PrivateSG: !GetAtt SGStack.Outputs.Nhom16PrivateSecurityGroup
-        KeyName: Vinhcute  # your key pair
+        KeyName: virginia-key  # your key pair
