@@ -18,10 +18,6 @@ variable "protocol_in_private" {
   type        = string
 }
 
-variable "public_security_group_id" {
-  description = "The security group ID for the public security group"
-  type        = string
-}
 
 variable "from_port_e_private" {
   description = "The starting port for the egress rule"
