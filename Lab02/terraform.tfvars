@@ -1,5 +1,5 @@
 region_value  = "us-east-1"
-profile_value = "quantc" #tài khoản ai người đó sử dụng 
+profile_value = "" #tài khoản ai người đó sử dụng 
 
 # VPC
 vpc_cidr_block_value         = "172.31.0.0/16"
