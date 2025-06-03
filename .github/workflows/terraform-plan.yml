@@ -3,15 +3,12 @@ on:
   pull_request: 
     branches:
       - main
-      - quantc
   push:
     branches:
       - main
-      - quantc
 
 jobs:
   terraform:
-    if: github.repository == 'Zquan315/NT548-DevOps-ThucHanh/Lab02'
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
 
@@ -26,6 +23,7 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: ./Lab02
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -33,6 +31,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: ./Lab02
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
