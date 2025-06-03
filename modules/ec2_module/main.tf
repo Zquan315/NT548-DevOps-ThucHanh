@@ -9,6 +9,7 @@ resource "aws_instance" "nhom16_ec2_private" {
   }
 }
 
+
 resource "aws_instance" "nhom16_ec2_public" {
   ami                         = var.ami_id
   instance_type               = var.instance_type
@@ -18,4 +19,5 @@ resource "aws_instance" "nhom16_ec2_public" {
   tags = {
     Name = "EC2 Public Instance"
   }
+  iam_instance_profile        = "test-iam-role"
 }
