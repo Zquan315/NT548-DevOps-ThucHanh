@@ -1,6 +1,7 @@
 # Allocate an Elastic IP
 resource "aws_eip" "nhom16_eip" {
     network_border_group = var.region_network_border_group
+    vpc = true
     tags = {
         Name = "nhom16_eip"
     }
