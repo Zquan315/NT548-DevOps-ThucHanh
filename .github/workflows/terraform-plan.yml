@@ -3,16 +3,18 @@ on:
   pull_request: 
     branches:
       - main
+      - quantc
   push:
     branches:
       - main
+      - quantc
 
 jobs:
   terraform:
     if: github.repository == 'Zquan315/NT548-DevOps-ThucHanh/Lab02'
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout          # scan Repository
         uses: actions/checkout@v4
