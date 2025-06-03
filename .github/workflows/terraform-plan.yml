@@ -12,9 +12,7 @@ jobs:
     if: github.repository == 'Zquan315/NT548-DevOps-ThucHanh/Lab02'
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull_request: write
+    
     steps:
       - name: Checkout          # scan Repository
         uses: actions/checkout@v4
