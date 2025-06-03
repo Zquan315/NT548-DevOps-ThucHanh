@@ -16,6 +16,17 @@ jobs:
       - name: Checkout          # scan Repository
         uses: actions/checkout@v4
 
+      - name: Set up Python for Checkov
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov scan
+        run: checkov -d ./Lab02
+
       - name: set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -32,6 +43,7 @@ jobs:
       - name: Terraform Plan
         run: terraform plan
         working-directory: ./Lab02
+        depends-on: Terraform Init
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
