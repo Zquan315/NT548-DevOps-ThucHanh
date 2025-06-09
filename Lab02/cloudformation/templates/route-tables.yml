@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Route tables for public and private subnets.
+
+Parameters:
+  VPCId:
+    Type: String
+  PublicSubnetId:
+    Type: String
+  PrivateSubnetId:
+    Type: String
+  IGWId:
+    Type: String
+  NatGatewayId:
+    Type: String
+
+Resources:
+  Nhom16PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPCId
+      Tags:
+        - Key: Name
+          Value: Nhom16PublicRouteTable
+
+  Nhom16PublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref Nhom16PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref IGWId
+
+  Nhom16PublicRouteAssoc:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Nhom16PublicRouteTable
+      SubnetId: !Ref PublicSubnetId
+
+  Nhom16PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPCId
+      Tags:
+        - Key: Name
+          Value: Nhom16PrivateRouteTable
+
+  Nhom16PrivateRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref Nhom16PrivateRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGatewayId
+
+  Nhom16PrivateRouteAssoc:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Nhom16PrivateRouteTable
+      SubnetId: !Ref PrivateSubnetId

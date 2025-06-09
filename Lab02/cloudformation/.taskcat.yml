@@ -1,0 +1,7 @@
+project:
+  name: my-cloudformation-test
+  regions:
+    - ap-southeast-1
+  template: main.yml                
+  parameters:
+    KeyName: Cutelovely             

@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo Installing dependencies...
+      - pip install cfn-lint taskcat
+  pre_build:
+    commands:
+      - echo Running cfn-lint to validate templates...
+      - cfn-lint templates/*.yml
+  build:
+    commands:
+      - echo Running taskcat tests...
+      - taskcat test run
+
+artifacts:
+  files:
+    - '**/*'
+
+reports:
+  taskcat-report:
+    files:
+      - taskcat-output/**/*.json
+    base-directory: taskcat-output

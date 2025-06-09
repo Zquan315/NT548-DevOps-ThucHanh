@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Tạo EC2 public + private instance.
+
+Parameters:
+  PublicSubnetId:
+    Type: String
+  PrivateSubnetId:
+    Type: String
+  PublicSG:
+    Type: String
+  PrivateSG:
+    Type: String
+  KeyName:
+    Type: String
+
+Resources:
+  PublicEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0f88e80871fd81e91
+      InstanceType: t2.micro
+      SubnetId: !Ref PublicSubnetId
+      SecurityGroupIds: [!Ref PublicSG]
+      KeyName: !Ref KeyName
+      Tags:
+        - Key: Name
+          Value: Nhom16_EC2_Public_Instance
+
+  PrivateEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0f88e80871fd81e91
+      InstanceType: t2.micro
+      SubnetId: !Ref PrivateSubnetId
+      SecurityGroupIds: [!Ref PrivateSG]
+      KeyName: !Ref KeyName
+      Tags:
+        - Key: Name
+          Value: Nhom16_EC2_Private_Instance
