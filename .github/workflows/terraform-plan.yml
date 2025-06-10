@@ -11,7 +11,7 @@ jobs:
   terraform:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout          # scan Repository
         uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Checkov
-        run: pip install checkov
+        run: pip install --upgrade checkov
 
       - name: Run Checkov scan
         run: checkov -d ./Lab02
