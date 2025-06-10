@@ -22,10 +22,10 @@ jobs:
           python-version: '3.x'
 
       - name: Install Checkov
-        run: pip install --upgrade checkov
+        run: pip install checkov==3.2.0
 
       - name: Run Checkov scan
-        run: checkov -d ./Lab02 --config-file ./.checkov.yml
+        run: checkov -d ./Lab02 --config-file ./.checkov.yml --show-config
 
       - name: set up Terraform
         uses: hashicorp/setup-terraform@v2
