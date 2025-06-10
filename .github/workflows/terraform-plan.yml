@@ -25,7 +25,7 @@ jobs:
         run: pip install checkov==3.2.439
 
       - name: Run Checkov scan
-        run: checkov -d ./Lab02 --config-file ./.checkov.yml
+        run: checkov -d ./Lab02 --config-file .checkov.yml
 
       - name: set up Terraform
         uses: hashicorp/setup-terraform@v2
