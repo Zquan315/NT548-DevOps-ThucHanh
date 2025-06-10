@@ -11,7 +11,7 @@ jobs:
   terraform:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout          # scan Repository
         uses: actions/checkout@v4

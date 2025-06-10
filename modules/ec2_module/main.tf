@@ -19,5 +19,4 @@ resource "aws_instance" "nhom16_ec2_public" {
   tags = {
     Name = "EC2 Public Instance"
   }
-  iam_instance_profile        = "test-iam-role"
 }
