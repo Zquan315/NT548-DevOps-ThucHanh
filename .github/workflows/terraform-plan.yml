@@ -25,7 +25,7 @@ jobs:
         run: pip install checkov==3.2.439
 
       - name: Run Checkov scan
-        run: checkov -d ./Lab02 --skip-check CKV_AWS_79, CKV_AWS_126, CKV_AWS_135, CKV_AWS_8,C KV_AWS_23, CKV_AWS_130, CKV2_AWS_5, CKV2_AWS_12, CKV2_AWS_11, CKV2_AWS_41
+        run: checkov -d ./Lab02 --skip-check CKV_AWS_79;CKV_AWS_126;CKV_AWS_135;CKV_AWS_8;CKV_AWS_23;CKV_AWS_130;CKV2_AWS_5;CKV2_AWS_12;CKV2_AWS_11;CKV2_AWS_41
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
