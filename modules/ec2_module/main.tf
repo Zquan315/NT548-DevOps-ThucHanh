@@ -9,6 +9,7 @@ resource "aws_instance" "nhom16_ec2_private" {
   }
 }
 
+
 resource "aws_instance" "nhom16_ec2_public" {
   ami                         = var.ami_id
   instance_type               = var.instance_type

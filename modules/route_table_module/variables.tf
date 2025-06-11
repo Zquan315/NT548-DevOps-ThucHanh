@@ -3,15 +3,6 @@ variable "vpc_id_value" {
   type        = string
 }
 
-variable "route_table_private_id" {
-  description = "The ID of the private route table"
-  type        = string
-}
-
-variable "route_table_public_id" {
-  description = "The ID of the public route table"
-  type        = string
-}
 
 variable "destination_cidr_block_private" {
   description = "The destination CIDR block for the private route"

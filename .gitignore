@@ -17,6 +17,7 @@ crash.log
 # Bỏ qua file khóa khi chạy terraform
 .terraform.lock.hcl
 
-# Chỉ theo dõi file .tf và .tfvars
+# Chỉ theo dõi file .tf ,.tfvars và .yml
 !*.tf
 !*.tfvars
+!*.yml

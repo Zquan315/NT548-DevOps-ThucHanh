@@ -7,7 +7,7 @@ resource "aws_security_group" "nhom16_security_group_private" {
       from_port       = var.from_port_in_private
       to_port         = var.to_port_in_private
       protocol        = var.protocol_in_private
-      security_groups = [var.public_security_group_id]
+      security_groups = [aws_security_group.nhom16_security_group_public.id]
 
   }
   egress {
