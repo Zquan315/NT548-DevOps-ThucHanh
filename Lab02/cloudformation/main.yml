@@ -5,12 +5,12 @@ Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: "https://ttvkcgt.s3.amazonaws.com/vpc.yml"
+      TemplateURL: https://nhom16-bucket.s3.us-east-1.amazonaws.com/vpc.yml
 
   NATStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: "https://ttvkcgt.s3.amazonaws.com/nat-gateway.yml"
+      TemplateURL: https://nhom16-bucket.s3.us-east-1.amazonaws.com/nat-gateway.yml
       Parameters:
         VPCId: !GetAtt VPCStack.Outputs.VPCId
         PublicSubnetId: !GetAtt VPCStack.Outputs.PublicSubnetId
@@ -18,17 +18,15 @@ Resources:
   SGStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: "https://ttvkcgt.s3.amazonaws.com/security-groups.yml"
+      TemplateURL: https://nhom16-bucket.s3.us-east-1.amazonaws.com/security-groups.yml
       Parameters:
         VPCId: !GetAtt VPCStack.Outputs.VPCId
-        # MyIp: 192.168.0.137/32  # your specific IP
-        # MyIp: 118.68.140.83/32
-        MyIp: 171.225.248.146/32
+        MyIp: 171.236.48.98/32
 
   RouteTableStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: "https://ttvkcgt.s3.amazonaws.com/route-tables.yml"
+      TemplateURL: https://nhom16-bucket.s3.us-east-1.amazonaws.com/route-tables.yml
       Parameters:
         VPCId: !GetAtt VPCStack.Outputs.VPCId
         PublicSubnetId: !GetAtt VPCStack.Outputs.PublicSubnetId
@@ -39,11 +37,10 @@ Resources:
   EC2Stack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: "https://ttvkcgt.s3.amazonaws.com/ec2.yml"
+      TemplateURL: https://nhom16-bucket.s3.us-east-1.amazonaws.com/ec2.yml
       Parameters:
         PublicSubnetId: !GetAtt VPCStack.Outputs.PublicSubnetId
         PrivateSubnetId: !GetAtt VPCStack.Outputs.PrivateSubnetId
         PublicSG: !GetAtt SGStack.Outputs.Nhom16PublicSecurityGroup
         PrivateSG: !GetAtt SGStack.Outputs.Nhom16PrivateSecurityGroup
-        KeyName: Cutelovely # your key pair
-
+        KeyName: nhom16-key
