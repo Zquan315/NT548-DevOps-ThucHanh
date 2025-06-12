@@ -24,4 +24,4 @@ cidr_blocks_in_public_value = ["1.54.222.217/32"] # My IP address
 # EC2 instance
 ami_id_value = "ami-0e449927258d45bc4" # amazon linux 2023 ami
 instance_type_value = "t2.micro"
-key_name_value = "virginia-key" # my key pair name
+key_name_value = "413610-keypair" # my key pair name

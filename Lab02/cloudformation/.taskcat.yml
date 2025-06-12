@@ -1,7 +1,5 @@
 project:
-  name: my-cloudformation-test
+  name: nhom16-cloudformation-tests
   regions:
-    - ap-southeast-1
-  template: main.yml                
-  parameters:
-    KeyName: Cutelovely             
+    - us-east-1
+  template: main.yml  

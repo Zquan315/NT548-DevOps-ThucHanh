@@ -9,7 +9,7 @@ Parameters:
   MyIp:
     Type: String
     Description: Your public IP in CIDR notation 
-    Default: 171.225.248.146/32
+    Default: 171.224.240.4/32
 
 Resources:
   Nhom16PublicSG:
@@ -54,7 +54,6 @@ Outputs:
   Nhom16PublicSecurityGroup:
     Description: Security Group ID for Public EC2
     Value: !Ref Nhom16PublicSG
-
   Nhom16PrivateSecurityGroup:
     Description: Security Group ID for Private EC2
     Value: !Ref Nhom16PrivateSG
