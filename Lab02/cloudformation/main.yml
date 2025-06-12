@@ -21,7 +21,7 @@ Resources:
       TemplateURL: https://nhom16-bucket.s3.us-east-1.amazonaws.com/security-groups.yml
       Parameters:
         VPCId: !GetAtt VPCStack.Outputs.VPCId
-        MyIp: 171.224.240.4/32 # your IP address
+        MyIp: 171.236.48.98/32
 
   RouteTableStack:
     Type: AWS::CloudFormation::Stack

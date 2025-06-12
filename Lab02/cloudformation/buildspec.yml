@@ -5,10 +5,17 @@ phases:
     runtime-versions:
       python: 3.11
     commands:
+      - pip install --upgrade pip
       - pip install cfn-lint taskcat
   build:
     commands:
-      - cfn-lint main.yml
+      - |
+        for file in *.yml; do
+          if [ -f "$file" ]; then
+            echo "=== Running cfn-lint on $file ==="
+            cfn-lint "$file"
+          fi
+        done
       - taskcat test run
 artifacts:
   files:
