@@ -1,6 +1,7 @@
 # NT548.P21 - Thực hành Công nghệ DevOps và ứng dụng
 
 ## Lab 01
+
 ### Hướng dẫn cách chạy mã nguồn với terraform
 
 > Bởi vì các trong các module không có file `.tfvars` vì thế khi chạy cần phải nhập giá trị từng biến nếu muốn chạy từng module. Tuy nhiên, ở bài lab này, nhóm đã tách folder `module` riêng với folder `Lab01` dể có thể phục vụ cho nhiều bài lab khác. Vì thế để chỉ cần 1 câu lệnh là có thể khởi tạo toàn bộ hệ thống gồm 5 module.
@@ -17,7 +18,7 @@
   cd Lab01/
   ```
 
-- Chạy lệnh Khởi tạo, nhưng đầu tiên phải tải terraform trước nhé, sau khi tải chạy lệnh ` terraform --version`, nếu hiển thị version coi như thành công
+- Chạy lệnh Khởi tạo, nhưng đầu tiên phải tải terraform trước nhé, sau khi tải chạy lệnh `terraform --version`, nếu hiển thị version coi như thành công
 
   ```cli
   terraform init
@@ -47,7 +48,7 @@
 
 1. Chỉnh sửa IP
 
-- Mở file `main.yml` và `security-groups.yml`, thay giá trị của MyIp bằng địa chỉ IP public của bạn.
+- Mở file `main.yml` và `security-groups.yml`, thay giá trị của MyIp bằng địa chỉ IP public của máy cá nhân.
 
 2. Cập nhật Key Pair
 
@@ -72,3 +73,28 @@
 
 ## Lab 02
 
+1. Chạy tương tự như ở Lab 1
+
+2. Chạy bash stack tạo infra
+
+``` bash
+aws cloudformation create-stack --stack-name nhom16-stack --template-body file://main.yml --capabilities CAPABILITY_NAMED_IAM --region us-east-1
+```
+
+3. Tạo codecommit repo, tạo HTTPS Git credentials for AWS CodeCommit để chứa code
+
+``` bash
+aws codecommit create-repository --repository-name nhom16-repo
+```
+
+> Repo bao gồm file buildspec.yml vào codebuild
+
+4. Push toàn bộ file cloudformation lên repo với credentials vừa tạo
+
+5. Chạy bash stack deploy với file cloudformation codepipeline.yml với các tham số cần thiết
+
+``` bash
+aws cloudformation deploy --template-file codepipeline.yml --stack-name nhom16-pipeline --parameter-overrides ArtifactBucket=nhom16-bucket CodeCommitRepoName=nhom16-repo --capabilities CAPABILITY_NAMED_IAM
+```
+
+6. Hoàn tất quá trình tạo stack và kiểm tra trên aws codepipeline
