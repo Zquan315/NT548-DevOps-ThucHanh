@@ -11,7 +11,7 @@ pipeline {
         stage('Clone') {
             steps {
                 script {
-                    git branch: 'main', url: 'https://github.com/Lghthien/Deploys_Jenkin.git'
+                    git branch: 'jenkin', url: 'https://github.com/Zquan315/NT548-DevOps-ThucHanh.git'
                 }
             }
         }
