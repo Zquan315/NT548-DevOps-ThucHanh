@@ -72,6 +72,10 @@
 - Khi stack được tạo thành công, quá trình triển khai đã hoàn tất.
 
 ## Lab 02
+### Câu 1:
+
+Không có chạy code nên toàn bộ quá trình em để ở trong file báo cáo
+
 ### Câu 2
 
 1. Chạy tương tự như ở Lab 1
@@ -101,3 +105,5 @@ aws cloudformation deploy --template-file codepipeline.yml --stack-name nhom16-p
 6. Hoàn tất quá trình tạo stack và kiểm tra trên aws codepipeline
 
 ### Câu 3
+
+Toàn bộ quá trình được viết chúng em để trong file báo cáo
