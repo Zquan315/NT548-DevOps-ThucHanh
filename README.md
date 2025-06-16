@@ -106,4 +106,5 @@ aws cloudformation deploy --template-file codepipeline.yml --stack-name nhom16-p
 
 ### Câu 3
 
-Toàn bộ quá trình được viết chúng em để trong file báo cáo
+- Toàn bộ quá trình được viết chúng em để trong file báo cáo
+- Code ở nhánh Jenkins
